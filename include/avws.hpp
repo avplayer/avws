@@ -11,5 +11,10 @@
 #ifndef AVWS_AVWS_HPP
 #define AVWS_AVWS_HPP
 
+#ifndef AVWS_DECL
+# define AVWS_DECL inline
+#endif
+
+#include "avws/web_socket.hpp"
 
 #endif // AVWS_WS_HPP
