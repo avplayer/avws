@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "avws-client", "avws-client.vcxproj", "{321398E4-A216-465F-955C-A57145461F8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "avws-server", "avws-server.vcxproj", "{7591520A-DDAA-40E9-8F0B-7518DEFCE35D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{321398E4-A216-465F-955C-A57145461F8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{321398E4-A216-465F-955C-A57145461F8B}.Debug|Win32.Build.0 = Debug|Win32
+		{321398E4-A216-465F-955C-A57145461F8B}.Release|Win32.ActiveCfg = Release|Win32
+		{321398E4-A216-465F-955C-A57145461F8B}.Release|Win32.Build.0 = Release|Win32
+		{7591520A-DDAA-40E9-8F0B-7518DEFCE35D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7591520A-DDAA-40E9-8F0B-7518DEFCE35D}.Debug|Win32.Build.0 = Debug|Win32
+		{7591520A-DDAA-40E9-8F0B-7518DEFCE35D}.Release|Win32.ActiveCfg = Release|Win32
+		{7591520A-DDAA-40E9-8F0B-7518DEFCE35D}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
