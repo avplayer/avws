@@ -13,10 +13,16 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\avws">
+      <UniqueIdentifier>{65ff6bd6-299a-4929-9b0d-6d36d62a2110}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\websocket.hpp">
+    <ClInclude Include="..\include\avws.hpp">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\web_socket.hpp">
+      <Filter>头文件\avws</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

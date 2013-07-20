@@ -81,10 +81,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\websocket.hpp" />
+    <ClCompile Include="..\examples\ws-server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\examples\ws-server.cpp" />
+    <ClInclude Include="..\include\avws.hpp" />
+    <ClInclude Include="..\include\avws\web_socket.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -81,7 +81,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\websocket.hpp" />
+    <ClInclude Include="..\include\avws.hpp" />
+    <ClInclude Include="..\include\avws\web_socket.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\ws-client.cpp" />
