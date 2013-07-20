@@ -24,6 +24,9 @@
     <ClInclude Include="..\include\avws\web_socket.hpp">
       <Filter>头文件\avws</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\avws\version.hpp">
+      <Filter>头文件\avws</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\ws-client.cpp">
