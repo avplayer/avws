@@ -30,7 +30,7 @@ public:
 	/**
 	 * @par Remarks
 	 * Postconditions: @c protocol(), @c user_info(), @c host(), @c path(),
-	 * @c query(), @c fragment() all return an empty string, and @c port() returns
+	 * @c query(), all return an empty string, and @c port() returns
 	 * 0.
 	 */
 	url()
@@ -138,15 +138,6 @@ public:
 		return query_;
 	}
 
-	/// Gets the fragment component of the URL.
-	/**
-	 * @returns A string containing the fragment of the URL.
-	 */
-	std::string fragment() const
-	{
-		return fragment_;
-	}
-
 	/// Components of the URL, used with @c from_string.
 	enum components_type
 	{
@@ -156,9 +147,8 @@ public:
 		port_component = 8,
 		path_component = 16,
 		query_component = 32,
-		fragment_component = 64,
 		all_components = protocol_component | user_info_component | host_component
-		| port_component | path_component | query_component | fragment_component
+		| port_component | path_component | query_component
 	};
 
 	/// Converts an object of class @c url to a string representation.
@@ -221,12 +211,6 @@ public:
 		{
 			s += "?";
 			s += query_;
-		}
-
-		if ((components & fragment_component) != 0 && !fragment_.empty())
-		{
-			s += "#";
-			s += fragment_;
 		}
 
 		return s;
@@ -375,10 +359,6 @@ public:
 			s += length;
 		}
 
-		// Fragment.
-		if (*s == '#')
-			new_url.fragment_.assign(++s);
-
 		ec = boost::system::error_code();
 		return new_url;
 	}
@@ -417,8 +397,7 @@ public:
 			&& a.host_ == b.host_
 			&& a.port_ == b.port_
 			&& a.path_ == b.path_
-			&& a.query_ == b.query_
-			&& a.fragment_ == b.fragment_;
+			&& a.query_ == b.query_;
 	}
 
 	/// Compares two @c url objects for inequality.
@@ -459,8 +438,6 @@ public:
 			return true;
 		if (b.query_ < a.query_)
 			return false;
-
-		return a.fragment_ < b.fragment_;
 	}
 
 private:
@@ -471,7 +448,6 @@ private:
 	std::string port_;
 	std::string path_;
 	std::string query_;
-	std::string fragment_;
 	bool ipv6_host_;
 };
 
