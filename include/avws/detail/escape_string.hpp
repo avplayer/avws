@@ -47,7 +47,7 @@ inline bool is_tspecial(int c)
 {
 	switch (c)
 	{
-	case ' ': case '`': case '{': case '}': case '^': case '|':
+	case ' ': case '`': case '{': case '}': case '^': case '|': case '#': // no fragment for websocket.
 		return true;
 	default:
 		return false;

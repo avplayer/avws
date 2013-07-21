@@ -39,6 +39,9 @@
     <ClInclude Include="..\include\avws\detail\utf8.hpp">
       <Filter>头文件\avws\detail</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\avws\detail\error_codec.hpp">
+      <Filter>头文件\avws\detail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\ws-client.cpp">
