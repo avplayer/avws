@@ -16,6 +16,9 @@
     <Filter Include="头文件\avws">
       <UniqueIdentifier>{65ff6bd6-299a-4929-9b0d-6d36d62a2110}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\avws\detail">
+      <UniqueIdentifier>{07a9a864-9830-48d7-aefe-a6cf011fbf6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\avws.hpp">
@@ -26,6 +29,15 @@
     </ClInclude>
     <ClInclude Include="..\include\avws\version.hpp">
       <Filter>头文件\avws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\url.hpp">
+      <Filter>头文件\avws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\detail\escape_string.hpp">
+      <Filter>头文件\avws\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\detail\utf8.hpp">
+      <Filter>头文件\avws\detail</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

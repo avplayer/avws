@@ -16,6 +16,9 @@
     <Filter Include="头文件\avws">
       <UniqueIdentifier>{9338cf4e-4c04-4b49-877f-ec9a4f42db31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\avws\detail">
+      <UniqueIdentifier>{9fcdcdb2-5ea8-4091-8d38-f97d5b77027f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\ws-server.cpp">
@@ -31,6 +34,15 @@
     </ClInclude>
     <ClInclude Include="..\include\avws\version.hpp">
       <Filter>头文件\avws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\url.hpp">
+      <Filter>头文件\avws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\detail\escape_string.hpp">
+      <Filter>头文件\avws\detail</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\detail\utf8.hpp">
+      <Filter>头文件\avws\detail</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

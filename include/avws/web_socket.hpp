@@ -11,8 +11,10 @@
 #ifndef AVWS_WEB_SOCKET_HPP
 #define AVWS_WEB_SOCKET_HPP
 
+#include "avws.hpp"
 #include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
+#include <boost/asio/detail/config.hpp>
 
 namespace avws {
 
@@ -21,8 +23,20 @@ using boost::asio::ip::tcp;
 class web_socket : public boost::noncopyable
 {
 public:
+	/// Constructor.
+	AVWS_DECL explicit web_socket(boost::asio::io_service &io)
+		: m_ioservice(io)
+	{
+	}
+
+	/// Destructor.
+	AVWS_DECL virtual ~web_socket()
+	{
+	}
+
 protected:
-private:
+
+	boost::asio::io_service& m_ioservice;
 };
 
 } // namespace avws

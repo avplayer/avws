@@ -85,6 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\avws.hpp" />
+    <ClInclude Include="..\include\avws\detail\escape_string.hpp" />
+    <ClInclude Include="..\include\avws\detail\utf8.hpp" />
+    <ClInclude Include="..\include\avws\url.hpp" />
     <ClInclude Include="..\include\avws\version.hpp" />
     <ClInclude Include="..\include\avws\web_socket.hpp" />
   </ItemGroup>
