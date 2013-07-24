@@ -88,35 +88,35 @@ public:
 	AVWS_DECL void ping();
 	AVWS_DECL void ping(boost::system::error_code &ec);
 
-	// 同步发送带payload的ping消息.
-	template <typename ConstBufferSequence>
-	void ping(const ConstBufferSequence &buffers);
-	template <typename ConstBufferSequence>
-	void ping(const ConstBufferSequence &buffers, boost::system::error_code &ec);
+// 	// 同步发送带payload的ping消息.
+// 	template <typename ConstBufferSequence>
+// 	void ping(const ConstBufferSequence &buffers);
+// 	template <typename ConstBufferSequence>
+// 	void ping(const ConstBufferSequence &buffers, boost::system::error_code &ec);
 
 	// 异步发送ping消息.
 	template <typename Handler>
 	void async_ping(BOOST_ASIO_MOVE_ARG(Handler) handler);
-	// 异步发送payload的ping消息.
-	template <typename ConstBufferSequence, typename Handler>
-	void async_ping(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
+// 	// 异步发送payload的ping消息.
+// 	template <typename ConstBufferSequence, typename Handler>
+// 	void async_ping(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
 
 	// 同步发送pong消息.
 	AVWS_DECL void pong();
 	AVWS_DECL void pong(boost::system::error_code &ec);
 
-	// 同步发送带payload的pong消息.
-	template <typename ConstBufferSequence>
-	void pong(const ConstBufferSequence &buffers);
-	template <typename ConstBufferSequence>
-	void pong(const ConstBufferSequence &buffers, boost::system::error_code &ec);
+// 	// 同步发送带payload的pong消息.
+// 	template <typename ConstBufferSequence>
+// 	void pong(const ConstBufferSequence &buffers);
+// 	template <typename ConstBufferSequence>
+// 	void pong(const ConstBufferSequence &buffers, boost::system::error_code &ec);
 
 	// 异步发送pong消息.
 	template <typename Handler>
 	void async_pong(BOOST_ASIO_MOVE_ARG(Handler) handler);
-	// 异步发送payload的ping消息.
-	template <typename ConstBufferSequence, typename Handler>
-	void async_pong(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
+// 	// 异步发送payload的ping消息.
+// 	template <typename ConstBufferSequence, typename Handler>
+// 	void async_pong(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
 
 	// 欠缺的考虑, FIN消息控制.
 
