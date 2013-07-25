@@ -139,7 +139,7 @@ typedef option response_opts;
 
 
 
-// Http请求的代理设置.
+// websocket请求的代理设置.
 
 struct proxy_settings
 {
