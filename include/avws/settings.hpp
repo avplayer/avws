@@ -20,7 +20,21 @@
 namespace avws {
 
 namespace avws_options {
+
 	static const std::string status_code("_status_code");	// AVWS的状态码.
+
+	// 使用枚举类型而不是static const int, 是方便可能被用于在switch中.
+	enum op_code
+	{
+		op_code_continuation = 0x0,
+		op_code_text = 0x1,
+		op_code_binary = 0x2,
+		op_code_data_unused = 0x3,
+		op_code_close = 0x8,
+		op_code_ping = 0x9,
+		op_code_pong = 0xA,
+		op_code_control_unused = 0xB,
+	};
 }
 
 // 具体的websocket的option选项实现.
