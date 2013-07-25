@@ -12,6 +12,8 @@
 #define AVWS_WEB_SOCKET_HPP
 
 #include "avws.hpp"
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/detail/config.hpp>
@@ -71,55 +73,32 @@ public:
 
 	// 在websocket中, 数据封装成frame由发送函数实现, 上层用户无需操心.
 	// 至于是文本还是二进制, 由request_options确定.
+	// 由于websocket是基于message设计, 所以, write_some每次实际上将
+	// 是发送一条完整的消息.
 
-	// 同步发送一些数据.
+	// 同步发送消息.
 	template <typename ConstBufferSequence>
 	std::size_t write_some(const ConstBufferSequence &buffers);
-	// 同步发送一些数据.
+	// 同步发送消息.
 	template <typename ConstBufferSequence>
 	std::size_t write_some(const ConstBufferSequence &buffers,
 		boost::system::error_code &ec);
 
-	// 异步发送一些数据.
+	// 异步发送消息.
 	template <typename ConstBufferSequence, typename Handler>
 	void async_write_some(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
 
-	// 同步发送ping消息.
-	AVWS_DECL void ping();
-	AVWS_DECL void ping(boost::system::error_code &ec);
+	// 同步接收消息.
+	template <typename MutableBufferSequence>
+	std::size_t read_some(const MutableBufferSequence &buffers);
+	// 同步接收消息.
+	template <typename MutableBufferSequence>
+	std::size_t read_some(const MutableBufferSequence &buffers,
+		boost::system::error_code &ec);
 
-// 	// 同步发送带payload的ping消息.
-// 	template <typename ConstBufferSequence>
-// 	void ping(const ConstBufferSequence &buffers);
-// 	template <typename ConstBufferSequence>
-// 	void ping(const ConstBufferSequence &buffers, boost::system::error_code &ec);
-
-	// 异步发送ping消息.
-	template <typename Handler>
-	void async_ping(BOOST_ASIO_MOVE_ARG(Handler) handler);
-// 	// 异步发送payload的ping消息.
-// 	template <typename ConstBufferSequence, typename Handler>
-// 	void async_ping(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
-
-	// 同步发送pong消息.
-	AVWS_DECL void pong();
-	AVWS_DECL void pong(boost::system::error_code &ec);
-
-// 	// 同步发送带payload的pong消息.
-// 	template <typename ConstBufferSequence>
-// 	void pong(const ConstBufferSequence &buffers);
-// 	template <typename ConstBufferSequence>
-// 	void pong(const ConstBufferSequence &buffers, boost::system::error_code &ec);
-
-	// 异步发送pong消息.
-	template <typename Handler>
-	void async_pong(BOOST_ASIO_MOVE_ARG(Handler) handler);
-// 	// 异步发送payload的ping消息.
-// 	template <typename ConstBufferSequence, typename Handler>
-// 	void async_pong(const ConstBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
-
-	// 欠缺的考虑, FIN消息控制.
-
+	// 异步接收消息.
+	template <typename MutableBufferSequence, typename Handler>
+	void async_read_some(const MutableBufferSequence &buffers, BOOST_ASIO_MOVE_ARG(Handler) handler);
 
 protected:
 
