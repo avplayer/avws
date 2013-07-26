@@ -15,6 +15,10 @@
 #include <boost/system/system_error.hpp>
 #include <boost/system/error_code.hpp>
 
+#ifndef BOOST_SYSTEM_NOEXCEPT
+#define BOOST_SYSTEM_NOEXCEPT BOOST_NOEXCEPT
+#endif
+
 namespace avws {
 
 namespace detail {
@@ -53,6 +57,21 @@ enum errc_t
 
 	/// The response's headers were malformed.
 	malformed_response_headers = 2,
+
+	/// The server-generated status code "401 Unauthorized".
+	unauthorized = 401,
+
+	/// The server-generated status code "402 Payment Required".
+	payment_required = 402,
+
+	/// The server-generated status code "403 Forbidden".
+	forbidden = 403,
+
+	/// The server-generated status code "404 Not Found".
+	not_found = 404,
+
+	/// The server-generated status code "405 Method Not Allowed".
+	method_not_allowed = 405,
 };
 
 /// Converts a value of type @c errc_t to a corresponding object of type
@@ -88,7 +107,7 @@ namespace detail {
 class error_category_impl
   : public boost::system::error_category
 {
-	virtual const char* name() const
+	virtual const char* name() const BOOST_SYSTEM_NOEXCEPT
 	{
 		return "HTTP";
 	}
@@ -101,12 +120,22 @@ class error_category_impl
 			return "Malformed status line";
 		case errc::malformed_response_headers:
 			return "Malformed response headers";
+		case errc::unauthorized:
+			return "Unauthorized";
+		case errc::payment_required:
+			return "Payment required";
+		case errc::forbidden:
+			return "Forbidden";
+		case errc::not_found:
+			return "Not found";
+		case errc::method_not_allowed:
+			return "Method not allowed";
 		default:
 			return "Unknown WEBSOCKET error";
 		}
 	}
 
-	virtual boost::system::error_condition default_error_condition(int e) const
+	virtual boost::system::error_condition default_error_condition(int e) const BOOST_SYSTEM_NOEXCEPT
 	{
 		switch (e)
 		{
