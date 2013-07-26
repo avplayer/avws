@@ -29,7 +29,9 @@ class web_socket : public boost::noncopyable
 public:
 	// Constructor.
 	AVWS_DECL explicit web_socket(boost::asio::io_service &io)
-		: m_ioservice(io)
+		: m_io_service(io)
+		, m_resolver(io)
+		, m_socket(io)
 	{
 	}
 
@@ -58,6 +60,32 @@ public:
 		}
 	}
 
+	// 同步查询url中host信息, 并返回相应的iterator.
+	tcp::resolver::iterator resolve_host(tcp::resolver &resolver,
+		const url &u, boost::system::error_code &ec)
+	{
+		std::ostringstream port_string;
+		port_string.imbue(std::locale("C"));
+		port_string << u.port();
+		tcp::resolver::query query(u.host(), port_string.str());
+		return resolver.resolve(query, ec);
+	}
+
+	// 同步连接到endpoint_iterator所指的host.
+	template <typename Socket>
+	void connect_host(Socket &s,
+		tcp::resolver::iterator &endpoint_iterator, boost::system::error_code &ec)
+	{
+		tcp::resolver::iterator end;
+		// 尝试连接解析出来的代理服务器地址.
+		ec = boost::asio::error::host_not_found;
+		while (ec && endpoint_iterator != end)
+		{
+			s.close(ec);
+			s.connect(*endpoint_iterator++, ec);
+		}
+	}
+
 	AVWS_DECL void open(const url &u, boost::system::error_code &ec)
 	{
 		// 保存url相关的信息.
@@ -74,6 +102,29 @@ public:
 			ec = boost::asio::error::operation_not_supported;
 			return;
 		}
+
+		// 解析url主机
+		tcp::resolver::iterator endpoint_iterator = resolve_host(m_resolver, m_url, ec);
+		if (ec)	// 解析域名出错, 直接返回相关错误描述.
+		{
+			LOG_ERROR("Resolve \'" << m_url.host() <<
+				"\', error message \'" << ec.message() << "\'");
+			return;
+		}
+
+		connect_host(m_socket, endpoint_iterator, ec);
+		if (ec)
+		{
+			LOG_ERROR("Connect to server \'" << m_url.host() << ":" << m_url.port() <<
+				"\', error message \'" << ec.message() << "\'");
+			return;
+		}
+		else
+		{
+			LOG_DEBUG("Connect to server \'" << m_url.host() << ":" << m_url.port() << "\'.");
+		}
+
+		// 连接成功, 开始认证逻辑.
 
 	}
 
@@ -117,7 +168,13 @@ public:
 protected:
 
 	// io_service引用, 由用户在构造时传入, 并由用户运行.
-	boost::asio::io_service& m_ioservice;
+	boost::asio::io_service& m_io_service;
+
+	// 解析HOST.
+	tcp::resolver m_resolver;
+
+	// 当前socket对象.
+	tcp::socket m_socket;
 
 	// 当前url.
 	url m_url;
