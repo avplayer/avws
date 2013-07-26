@@ -15,6 +15,7 @@
 # define AVWS_DECL inline
 #endif
 
+#include "avws/logging.hpp"
 #include "avws/url.hpp"
 #include "avws/settings.hpp"
 #include "avws/web_socket.hpp"
