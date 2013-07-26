@@ -111,6 +111,7 @@ void web_socket::close(boost::system::error_code &ec)
 {
 
 }
+
 template <typename ConstBufferSequence>
 std::size_t web_socket::write_some(const ConstBufferSequence &buffers)
 {

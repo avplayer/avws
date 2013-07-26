@@ -82,10 +82,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\include\avws.hpp" />
+    <ClInclude Include="..\include\avws\connect.hpp" />
     <ClInclude Include="..\include\avws\detail\error_codec.hpp" />
     <ClInclude Include="..\include\avws\detail\escape_string.hpp" />
     <ClInclude Include="..\include\avws\detail\utf8.hpp" />
     <ClInclude Include="..\include\avws\logging.hpp" />
+    <ClInclude Include="..\include\avws\resolve.hpp" />
     <ClInclude Include="..\include\avws\settings.hpp" />
     <ClInclude Include="..\include\avws\url.hpp" />
     <ClInclude Include="..\include\avws\version.hpp" />

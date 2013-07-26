@@ -51,6 +51,12 @@
     <ClInclude Include="..\include\avws\logging.hpp">
       <Filter>头文件\avws</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\avws\resolve.hpp">
+      <Filter>头文件\avws</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\avws\connect.hpp">
+      <Filter>头文件\avws</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\ws-client.cpp">
