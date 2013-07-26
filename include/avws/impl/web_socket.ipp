@@ -11,6 +11,9 @@
 #ifndef AVWS_WEB_SOCKET_IPP
 #define AVWS_WEB_SOCKET_IPP
 
+#include "avws/resolve.hpp"
+#include "avws/connect.hpp"
+
 namespace avws {
 
 web_socket::web_socket(boost::asio::io_service &io)
@@ -39,32 +42,6 @@ response_opts web_socket::response_options(void) const
 {
 	response_opts opt;
 	return opt;
-}
-
-// 同步查询url中host信息, 并返回相应的iterator.
-tcp::resolver::iterator resolve_host(tcp::resolver &resolver,
-	const url &u, boost::system::error_code &ec)
-{
-	std::ostringstream port_string;
-	port_string.imbue(std::locale("C"));
-	port_string << u.port();
-	tcp::resolver::query query(u.host(), port_string.str());
-	return resolver.resolve(query, ec);
-}
-
-// 同步连接到endpoint_iterator所指的host.
-template <typename Socket>
-void connect_host(Socket &s,
-	tcp::resolver::iterator &endpoint_iterator, boost::system::error_code &ec)
-{
-	tcp::resolver::iterator end;
-	// 尝试连接解析出来的代理服务器地址.
-	ec = boost::asio::error::host_not_found;
-	while (ec && endpoint_iterator != end)
-	{
-		s.close(ec);
-		s.connect(*endpoint_iterator++, ec);
-	}
 }
 
 void web_socket::open(const url &u)
