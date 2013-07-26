@@ -15,6 +15,11 @@
 # define AVWS_DECL inline
 #endif
 
+#include <boost/shared_ptr.hpp>
+#include <boost/make_shared.hpp>
+#include <boost/noncopyable.hpp>
+#include <boost/asio.hpp>
+
 #include "avws/logging.hpp"
 #include "avws/url.hpp"
 #include "avws/settings.hpp"
