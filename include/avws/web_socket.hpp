@@ -23,6 +23,7 @@ namespace avws {
 
 using boost::asio::ip::tcp;
 
+// 这是一个web_socket接口实现.
 class web_socket : public boost::noncopyable
 {
 public:
@@ -37,7 +38,6 @@ public:
 	{
 	}
 
-
 	// 设置请求选项信息, 必须在open或accept之前设置.
 	AVWS_DECL void request_options(const request_opts &options);
 	// 返回当前连接的请求选项.
@@ -48,8 +48,34 @@ public:
 	// 在open或accept的步骤里, 实行了websocket认证.
 
 	// 打开url.
-	AVWS_DECL void open(const url &u);
-	AVWS_DECL void open(const url &u, boost::system::error_code &ec);
+	AVWS_DECL void open(const url &u)
+	{
+		boost::system::error_code ec;
+		open(u, ec);
+		if (ec)
+		{
+			boost::throw_exception(boost::system::system_error(ec));
+		}
+	}
+
+	AVWS_DECL void open(const url &u, boost::system::error_code &ec)
+	{
+		// 保存url相关的信息.
+		m_protocol = u.protocol();
+		m_url = u;
+
+		// 输出打开的链接地址.
+		LOG_DEBUG("Sync open url \'" << u.to_string() << "\'");
+
+		// 判断不支持的协议, 并返回错误.
+		if (m_protocol != "ws")
+		{
+			LOG_ERROR("Unsupported scheme \'" << m_protocol << "\'");
+			ec = boost::asio::error::operation_not_supported;
+			return;
+		}
+
+	}
 
 	// 异步打开url.
 	template <typename Handler>
@@ -90,7 +116,14 @@ public:
 
 protected:
 
+	// io_service引用, 由用户在构造时传入, 并由用户运行.
 	boost::asio::io_service& m_ioservice;
+
+	// 当前url.
+	url m_url;
+
+	// 当前协议.
+	std::string m_protocol;
 };
 
 } // namespace avws
