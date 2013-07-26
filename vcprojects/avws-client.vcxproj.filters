@@ -19,6 +19,9 @@
     <Filter Include="头文件\avws\detail">
       <UniqueIdentifier>{07a9a864-9830-48d7-aefe-a6cf011fbf6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\avws\impl">
+      <UniqueIdentifier>{e36c2472-b202-4216-a109-768e110be275}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\avws.hpp">
@@ -53,5 +56,10 @@
     <ClCompile Include="..\examples\ws-client.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\avws\impl\web_socket.ipp">
+      <Filter>头文件\avws\impl</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -94,6 +94,9 @@
   <ItemGroup>
     <ClCompile Include="..\examples\ws-client.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\avws\impl\web_socket.ipp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
